@@ -1,12 +1,14 @@
 use std::io;
 use std::io::Write;
 
-
 fn check_win(board: &mut [[char; 6]; 4], player: char) -> bool {
     // row
     for row in 0..board.len() {
         for column in 0..board[0].len() - 2 {
-            if board[row][column] == player && board[row][column + 1] == player && board[row][column + 2] == player {
+            if board[row][column] == player
+                && board[row][column + 1] == player
+                && board[row][column + 2] == player
+            {
                 return true;
             }
         }
@@ -15,7 +17,10 @@ fn check_win(board: &mut [[char; 6]; 4], player: char) -> bool {
     // column
     for row in 0..board.len() - 2 {
         for column in 0..board[0].len() {
-            if board[row][column] == player && board[row + 1][column] == player && board[row + 2][column] == player {
+            if board[row][column] == player
+                && board[row + 1][column] == player
+                && board[row + 2][column] == player
+            {
                 return true;
             }
         }
@@ -24,7 +29,10 @@ fn check_win(board: &mut [[char; 6]; 4], player: char) -> bool {
     // forward diagonal
     for row in 0..board.len() - 2 {
         for column in 0..board[0].len() - 2 {
-            if board[row][column] == player && board[row + 1][column + 1] == player && board[row + 2][column + 2] == player {
+            if board[row][column] == player
+                && board[row + 1][column + 1] == player
+                && board[row + 2][column + 2] == player
+            {
                 return true;
             }
         }
@@ -33,7 +41,10 @@ fn check_win(board: &mut [[char; 6]; 4], player: char) -> bool {
     // backward diagonal
     for row in (2..board.len()).rev() {
         for column in 0..board[0].len() - 2 {
-            if board[row][column] == player && board[row - 1][column + 1] == player && board[row - 2][column + 2] == player {
+            if board[row][column] == player
+                && board[row - 1][column + 1] == player
+                && board[row - 2][column + 2] == player
+            {
                 return true;
             }
         }
@@ -41,7 +52,6 @@ fn check_win(board: &mut [[char; 6]; 4], player: char) -> bool {
 
     return false;
 }
-
 
 fn print_board(board: &mut [[char; 6]; 4]) {
     for (row, columns) in board.iter().enumerate().rev() {
@@ -54,7 +64,6 @@ fn print_board(board: &mut [[char; 6]; 4]) {
     println!("  1 2 3 4 5 6");
 }
 
-
 fn change_player(player: char) -> char {
     if player == 'O' {
         'X'
@@ -62,7 +71,6 @@ fn change_player(player: char) -> char {
         'O'
     }
 }
-
 
 fn request_column(player: char, num_columns: u8) -> u8 {
     loop {
@@ -80,16 +88,15 @@ fn request_column(player: char, num_columns: u8) -> u8 {
                 if (1..=num_columns).contains(&col) {
                     col
                 } else {
-                    continue
+                    continue;
                 }
-            },
+            }
             Err(_) => continue,
         };
 
         return column;
     }
 }
-
 
 fn place_move(board: &mut [[char; 6]; 4], column: usize, player: &char) {
     for row in 0..board.len() {
@@ -99,7 +106,6 @@ fn place_move(board: &mut [[char; 6]; 4], column: usize, player: &char) {
         }
     }
 }
-
 
 fn main() {
     println!("This is a Connect-3 in Rust!");
