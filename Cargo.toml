@@ -12,3 +12,8 @@ rand = "0.8.5"
 name = "guessing_game"
 test = false
 bench = false
+
+[[bin]]
+name = "connect_three"
+test = false
+bench = false
